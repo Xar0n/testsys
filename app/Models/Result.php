@@ -43,4 +43,24 @@ class Result extends Model
         'user_id',
         'test_performed_id'
     ];
+
+    /**
+     * Пользователь
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Запись окончания теста
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function testPerformed()
+    {
+        return $this->belongsTo(TestPerformed::class, 'test_performed_id');
+    }
 }

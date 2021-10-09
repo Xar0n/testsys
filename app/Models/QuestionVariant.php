@@ -38,6 +38,15 @@ class QuestionVariant extends Model
     protected $fillable = [
         'variant',
         'question_id'
-
     ];
+
+    /**
+     * Вопрос
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function question()
+    {
+        return $this->belongsTo(Question::class, 'question_id');
+    }
 }

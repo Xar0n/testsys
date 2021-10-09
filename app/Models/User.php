@@ -8,6 +8,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * Class User
+ *
+ * @package App\Models
+ * @property string     $login
+ * @property string     $email
+ * @property string     $password
+ * @property string     $FIO
+ * @property int     $group_id
+ *
+ * Модель для пользователей
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -18,9 +30,11 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'login',
         'email',
         'password',
+        'FIO',
+        'group_id'
     ];
 
     /**
@@ -30,7 +44,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -39,6 +52,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Группа, принадлежащая пользователю.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id');
+    }
 }

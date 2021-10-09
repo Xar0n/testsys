@@ -45,4 +45,24 @@ class TestScheduled extends Model
         'group_id',
         'test_id'
     ];
+
+    /**
+     * Группа для которой запланирован тест.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id');
+    }
+
+    /**
+     * Запланированный тест.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function test()
+    {
+        return $this->belongsTo(Test::class, 'test_id');
+    }
 }

@@ -41,4 +41,24 @@ class TestPerformed extends Model
         'test_scheduled_id',
         'user_id'
     ];
+
+    /**
+     * Пользователь выполнивший тест.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Запланированный тест.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function testScheduled()
+    {
+        return $this->belongsTo(TestScheduled::class, 'test_scheduled_id');
+    }
 }
